@@ -45,4 +45,5 @@ elseif has('win32')
     cd \Users\Sam
     set runtimepath=\Users\Sam\.vim,$VIMRUNTIME
     so \Users\Sam\.vim\.vimrc
+endif
 
