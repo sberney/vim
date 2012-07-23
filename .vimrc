@@ -118,6 +118,10 @@
 	" }
 " }
 
+" Leader keys & custom commands {
+    let mapleader = ',' " alt: '\'
+" }
+
 " Tips, not settings. {
 	" where was an option set
 		" :scriptnames : list all plugins, _vimrcs loaded (super)
