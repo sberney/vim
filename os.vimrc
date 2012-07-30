@@ -2,12 +2,16 @@ if has('unix') || has('mac')
     if $USER == 'obienano'
         set runtimepath=~/sam/.vim,$VIMRUNTIME
         so ~/sam/.vim/.vimrc
-        set background=dark
+    elseif $USER == 'nanograv'
+        set runtimepath=~/sberneyism/.vim,$VIMRUNTIME
+        so ~/sberneyism/.vim/.vimrc
     else
         so ~/.vim/.vimrc
         set runtimepath=~/.vim,$VIMRUNTIME
-        set background=dark " very necessary on linux
     endif
+
+    set background=dark " very necessary on linux
+
 elseif has('win32')
     " This is the WIndows equivlent of .vimrc.
     " The majority of this file was automatically generated,
