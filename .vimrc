@@ -44,10 +44,15 @@
 
 " Eyecandy {
 	"set background=dark " make vim beautiful.
-        let g:zenburn_high_Contrast = 1 " For bright rooms.
+        "let g:zenburn_high_Contrast = 1 " For bright rooms.
+        "unlet g:zenburn_high_Contrast  " For dark rooms.
+        colorscheme zenburn
+        "
 	"colorscheme molokai " starburst flavored.
-        set background=light
-        colorscheme solarized " light cscheme
+        "
+        "set background=light
+        "colorscheme solarized " light cscheme
+        "
         "colorscheme lodestone " 'ok' colorscheme
         "colorscheme blackboard " for python
 " }
