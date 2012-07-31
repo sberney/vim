@@ -13,6 +13,11 @@
 	set wildmenu " make a beautiful bottomofscree tab autocomplete
 		" menu, yeah.
 	" set wildmode=list:longest " turn on wild mode huge list
+
+        set backupdir=$HOME/tmp " requires a rule in .gitignore
+        "set nobackup " stop backups.
+        "set nowritebackup " backups while file open
+        "set noswapfile " no .swp file.
 " }
 
 " Visualaid {
