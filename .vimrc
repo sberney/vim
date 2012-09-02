@@ -6,6 +6,10 @@
 "	on y va
 " }
 
+" Directory shortcuts {
+        let sd = $HOME."\\Documents\\syncdoc"
+" }
+
 " Behavior {
 	set nocompatible " vim is not vi.
 	set incsearch " Incremental search
@@ -130,6 +134,9 @@
 
 " Leader keys & custom commands {
     let mapleader = ',' " alt: '\'
+
+    map <leader>sd :exec "cd ".sd<RETURN>
+    map <leader>cd :cd %:p:h<RETURN>
 " }
 
 " Tips, not settings. {
