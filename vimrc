@@ -101,17 +101,21 @@ filetype plugin indent on
                 "set background=dark
                 "set background=light
 
-                colorscheme molokai
+                if has('gui_running')
+                        colorscheme molokai
+                endif
 
                 " Solarized {
                         "colorscheme solarized
                         "set background=light
 
+                if !has('gui_running')
                 " Zenburn {
                         "set background=dark
                         "let g:zenburn_high_Contrast = 1 " For bright rooms.
                         "unlet g:zenburn_high_Contrast  " For dark rooms.
-                        "colorscheme zenburn
+                        colorscheme zenburn
+                endif
         " }}}
 
         set number
