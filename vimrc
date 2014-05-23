@@ -436,6 +436,7 @@ filetype plugin indent on
 
                 " Let space do its page down thang {
                         nnoremap <Space>    <C-F>
+                        nnoremap <S-Space>  <C-B>
 
                 " Reassign arrow keys {{{
                         noremap <down> <ESC>:bn<RETURN>
