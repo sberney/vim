@@ -30,7 +30,7 @@ def main():
     EOW, pos = False, col
     while not EOW and pos < len(line):
             char = line[pos]
-            if char == ' ':
+            if char in [' ', "'", '"', '+', '-', '=', ',', '.', ')', '(']:
                     EOW = True
             else:
                 pos += 1
