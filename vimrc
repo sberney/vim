@@ -10,16 +10,16 @@
 
 set nocompatible
 filetype off    " required, apparently
-filetype plugin indent on
 
 " Vundle {{{
         " Configuration {{{
-        set rtp+=~/.vim/bundle/vundle/
-        call vundle#rc()
+        set rtp+=~/.vim/bundle/Vundle.vim
+        call vundle#begin()
         " }}}
 
         " Vundle manages vundle {{{
         Bundle 'gmarik/vundle'
+        " }}}
 
         " Plugin package management (Vundle) {
             " Fly through vim with visual ease
@@ -64,6 +64,9 @@ filetype plugin indent on
                 " Hangs on period sometimes. Does this fix?
                 let g:pymode_rope_lookup_project = 0
                 let g:pymode_rope = 0
+
+            " haskell ide {
+                Bundle 'raichoo/haskell-vim.git'
         " }}}
 
 
@@ -73,8 +76,13 @@ filetype plugin indent on
             Bundle 'marcus/vim-mustang'
             Bundle 'jnurmine/Zenburn'
         " }}}
+        call vundle#end()
+        filetype plugin indent on
 " }}}
 
+" Mystery {{{
+        noremap <C-v> <C-v>
+" }}}
 
 " Sourcing vimscript & co {{{
         " Reload changes to .vimrc automatically
@@ -114,7 +122,8 @@ filetype plugin indent on
                         "set background=dark
                         "let g:zenburn_high_Contrast = 1 " For bright rooms.
                         "unlet g:zenburn_high_Contrast  " For dark rooms.
-                        colorscheme zenburn
+                        "colorscheme zenburn
+                        colorscheme solarized
                 endif
         " }}}
 
@@ -124,7 +133,7 @@ filetype plugin indent on
         set laststatus=2
 
         set more        " more is less
-        set cursorline! " 
+        set cursorline  "
         syntax on       " syntax highlighting
 
         set hlsearch
@@ -134,6 +143,12 @@ filetype plugin indent on
         highlight OverLength ctermbg=red ctermfg=white guibg=#592929
         nnoremap mm :match OverLength /\%>80v.\+/<CR>
         nnoremap mn :match None<CR>
+
+        " ,l highlights a line, assigning 'l to return to it
+        " ,c highlights a column.
+        nnoremap <silent> <Leader>l ml:execute 'match Search /\%'.line('.').'l/'<CR>
+        nnoremap <silent> <Leader>c :execute 'match Search /\%'.virtcol('.').'v/'<CR>
+
 
 
         set showmatch   " highlights matching brackets when selected
@@ -272,11 +287,21 @@ filetype plugin indent on
 
 
 " Behavior and Function {{{
+        "augroup tabber
+        "        autocmd!
+        "        autocmd tabstop = 8
+        "        autocmd 
+        "augroup vimsourcer
+        "        autocmd!
+        "        autocmd BufWritePost ~/.vim/vimrc source ~/.vim/vimrc
+        "augroup END
+
         set magic       " regex
         set smarttab
-        set expandtab
-        set softtabstop=4
         set tabstop=8   " width of an actual \t
+        set shiftwidth=2
+        set softtabstop=2
+        set expandtab
         "set backspace=indent,eol,start
         set shiftround  " experimental, remove if annoying or unnoticed
 
@@ -372,12 +397,12 @@ filetype plugin indent on
                         nnoremap <leader>bp :execute "aboveleft split" bufname("#")<CR>
 
                 " use command-[ command-] to navigate (instead of command-{}) {{{
-                        nnoremap <D-[> :tabprev<CR>
-                        inoremap <D-[> :tabprev<CR>
-                        vnoremap <D-[> :tabprev<CR>
-                        nnoremap <D-]> :tabnext<CR>
-                        inoremap <D-]> :tabnext<CR>
-                        vnoremap <D-]> :tabnext<CR>
+                        nnoremap <A-[> :tabprev<CR>
+                        inoremap <A-[> :tabprev<CR>
+                        vnoremap <A-[> :tabprev<CR>
+                        nnoremap <A-]> :tabnext<CR>
+                        inoremap <A-]> :tabnext<CR>
+                        vnoremap <A-]> :tabnext<CR>
                 " }}}
         " }}}
 
@@ -476,6 +501,7 @@ filetype plugin indent on
 " }}}
 
 " Tips, not settings. {{{
+        " :help key-notation
         " where was an option set
         " :scriptnames : list all plugins, _vimrcs loaded (super)
         " :verbose set history? : reveals value of history and where set
@@ -484,4 +510,4 @@ filetype plugin indent on
 " }}}
 
 " Toys {
-        echo '>^.^<'
+        "echo '>^.^<'
