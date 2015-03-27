@@ -130,7 +130,7 @@ filetype plugin indent on
         set laststatus=2
 
         set more        " more is less
-        set cursorline! " 
+        set cursorline! "
         syntax on       " syntax highlighting
 
         set hlsearch
@@ -146,7 +146,8 @@ filetype plugin indent on
         set matchtime=2 " How many tenths of a second to blink when matching brackets
 
         if has('gui_running')
-                call ToggleFoldcolumn()  " show FC by default (leader fc toggles)
+                "call ToggleFoldcolumn()  " show FC by default (leader fc toggles)
+                set foldcolumn=4
         endif
 
         " wildmenu {{{
