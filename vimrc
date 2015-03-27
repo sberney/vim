@@ -31,6 +31,8 @@ set nocompatible    " devient viMprovée
                 set undodir=$SUPERHOME/undodir
                 set undofile
         endif
+
+        " see $SUPERHOME/cddir.vim for more paths
 " }
 
 " Sourcing vimscript & co {{{
@@ -42,10 +44,20 @@ set nocompatible    " devient viMprovée
         augroup END
 
         " Our birth is but a sleep and a forgetting. {
-                source ~/.vim/core.vim
-                source ~/.vim/statusline.vim
-                source ~/.vim/python_vim_fxns.vim
+                source $SUPERHOME/core.vim
+                source $SUPERHOME/statusline.vim
+                source $SUPERHOME/cddir.vim
+                source $SUPERHOME/python_vim_fxns.vim
         " }
 " }}}
 
+" Tips, not settings. {{{
+        " Note: there should be $HOME, $MYVIMRC environment variables pre-set.
+        " There should not be any other $SUPERHOME set.
 
+        " where was an option set
+        " :scriptnames : list all plugins, _vimrcs loaded (super)
+        " :verbose set history? : reveals value of history and where set
+        " :function : list functions
+        " :func SearchCompl : List particular function
+" }}}

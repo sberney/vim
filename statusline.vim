@@ -1,4 +1,6 @@
 " Statusline {{{
+        set laststatus=2  " always have a statusline!
+
         " Traditional Statusline {{{
                 " Tassos's {{{
                         "set statusline=
@@ -17,7 +19,7 @@
                         "hi User4 guifg=#a0ee40 guibg=#222222
                         "hi User5 guifg=#eeee40 guibg=#222222
                 " }}}
-        
+
                 " Remon's {{{
                         function! HighlightSearch()
                                 if &hls
@@ -47,7 +49,7 @@
                         hi User9 guifg=#ffffff  guibg=#810085
                         hi User0 guifg=#ffffff  guibg=#094afe
                 " }}}
-        
+
                 " 'fugitive git' {{{
                         " https://github.com/pengwynn/dotfiles/blob/master/vim/vimrc.symlink#L160
                         "set statusline= " Override default
@@ -73,7 +75,7 @@
 
                 " * enable/disable fugitive/lawrencium integration >
                 let g:airline#extensions#branch#enabled = 1
-                
+
                 " * change the text for when no branch is detected >
                 let g:airline#extensions#branch#empty_message = ''
 
@@ -81,6 +83,40 @@
                 let g:airline#extensions#promptline#enabled = 1
                 let airline#extensions#promptline#color_template = 'normal'
 
+        " }}}
+
+        " Promptline {{{
+                " sections (a, b, c, x, y, z, warn) are optional
+                let g:promptline_preset = {
+                        \'a' : [ promptline#slices#host(), promptline#slices#battery() ],
+                        \'b' : [ promptline#slices#user() ],
+                        \'c' : [ promptline#slices#cwd() ],
+                        \'x' : [ promptline#slices#git_status() ],
+                        \'y' : [ promptline#slices#vcs_branch() ],
+                        \'warn' : [ promptline#slices#last_exit_code() ]}
+
+                " to disable powerline symbols
+                let g:promptline_powerline_symbols = 0
+
+                let g:airline_left_sep = '▶'
+                let g:airline_right_sep = '◀'
+
+                if has('gui_running')
+                        "let g:airline_symbols.linenr = '␊'
+                        let g:airline_symbols.linenr = '␤'
+                        "let g:airline_symbols.linenr = '¶'
+
+                        let g:airline_symbols.branch = '⎇'
+
+                        "let g:airline_symbols.paste = 'ρ'
+                        let g:airline_symbols.paste = 'Þ'
+                        "let g:airline_symbols.paste = '∥'
+
+                        let g:airline_symbols.whitespace = 'Ξ'
+                endif
+
+                "let g:promptline_preset = 'full'
+                "let g:promptline_theme = 'jelly'
         " }}}
 " }}}
 

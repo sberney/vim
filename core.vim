@@ -26,8 +26,6 @@
                         "Bundle 'tpope/vim-abolish'
 
                 " statusline {
-                        set laststatus=2  " always have a statusline!
-
                         " awesome statusline!
                         Plugin 'bling/vim-airline'
                         " exports prompt to shell
@@ -222,8 +220,6 @@
                 set listchars=nbsp:¬,tab:»·,trail:·
         " }}}
 
-        set more        " more is less
-
         " smart search {{{
                 set incsearch
 
@@ -289,23 +285,19 @@
                                                         "and to before insertion
                                                                 "started
 
+        set noerrorbells
+        set novisualbell
+
         set ttyfast     " fast connection -> faster redrawing
         set splitright  " otherwise vsplit opens up on the left side
 
-        set noerrorbells
-        set novisualbell
+        set more        " more is less
 
         set scrolloff       =8      "Start scrolling when we're 8 lines away from margins
         set sidescrolloff  =15
         set sidescroll      =1
 
         set textwidth=0     " disable line-breaking long lines as you type them
-
-
-        " Starting from vim 7.3 undo can be persisted across sessions {
-                " http://www.reddit.com/r/vim/comments/kz84u/ ...
-                " what_are_some_simple_yet_mindblowing_tweaks_to/c2onmqe
-
 
         " Return to last edit position when opening files (You want this!) {
                 augroup persistent_editing_position
@@ -317,41 +309,6 @@
                         " Remember info about open buffers on close
                         set viminfo^=%
                 augroup END
-
-
-        " Promptline {{{
-                " sections (a, b, c, x, y, z, warn) are optional
-                let g:promptline_preset = {
-                        \'a' : [ promptline#slices#host(), promptline#slices#battery() ],
-                        \'b' : [ promptline#slices#user() ],
-                        \'c' : [ promptline#slices#cwd() ],
-                        \'x' : [ promptline#slices#git_status() ],
-                        \'y' : [ promptline#slices#vcs_branch() ],
-                        \'warn' : [ promptline#slices#last_exit_code() ]}
-
-                " to disable powerline symbols
-                let g:promptline_powerline_symbols = 0
-
-                let g:airline_left_sep = '▶'
-                let g:airline_right_sep = '◀'
-
-                if has('gui_running')
-                        "let g:airline_symbols.linenr = '␊'
-                        let g:airline_symbols.linenr = '␤'
-                        "let g:airline_symbols.linenr = '¶'
-
-                        let g:airline_symbols.branch = '⎇'
-
-                        "let g:airline_symbols.paste = 'ρ'
-                        let g:airline_symbols.paste = 'Þ'
-                        "let g:airline_symbols.paste = '∥'
-
-                        let g:airline_symbols.whitespace = 'Ξ'
-                endif
-
-                "let g:promptline_preset = 'full'
-                "let g:promptline_theme = 'jelly'
-        " }}}
 " }}}
 
 
@@ -362,17 +319,18 @@
         " plugin hotkey config {
                 let g:ctrlp_map = '<c-p>'
                 noremap <leader>u <ESC>:GundoToggle<RETURN>
+        " }
 
         " navigation {{{
-                " edit my vimrc {
+                " edit my vimrc
                         nnoremap <leader>ev :split $MYVIMRC<CR>
                 " edit the header file for this cpp
                         "nnoremap <leader>eh :split $MYVIMRC<CR>
 
-                " open previous buffer in new window {
+                " open previous buffer in new window
                         nnoremap <leader>bp :execute "aboveleft split" bufname("#")<CR>
 
-                " use command-[ command-] to navigate (instead of command-{}) {{{
+                " use command-[ command-] to navigate (instead of command-{}) {{{ " TODO: this is mac only
                         nnoremap <D-[> :tabprev<CR>
                         inoremap <D-[> :tabprev<CR>
                         vnoremap <D-[> :tabprev<CR>
@@ -382,18 +340,16 @@
                 " }}}
         " }}}
 
-        " allow use of :w!! to write file using sudo {
+        " allow use of :w!! to write file using sudo
                 cnoremap w!! %!sudo tee > /dev/null %
 
-        " Sidescrolling {
+        " Sidescrolling
                 noremap <C-L> zl
                 noremap <C-H> zh
 
-        " Go to next integer {
+        " Go to next integer
                 nnoremap <leader>gi     /\d<CR>
                 nnoremap <leader>gI     ?\d<CR>b
-                nnoremap <leader>g0i    0/\d<CR>
-                nnoremap <leader>g$i    $?\d<CR>b
 
 
         " F4/F5: Run this file (&save) {{{
@@ -403,10 +359,8 @@
                 nnoremap <F4>   :!python %<Enter>
         " }}}
 
-        " substitutions/changes/toggles {
+        " substitutions/changes/toggles
                 noremap <leader>bt :call ToggleBool()<RETURN>
-
-        " optional toggles {
 
 
         " reassigning builtins {{{
@@ -440,23 +394,7 @@
                         noremap <up> <ESC>:bp<RETURN>
                 " }}}
         " }}}
-
-
-        " Directory shortcuts {{{
-                let sd = $HOME."/gitclones/syncdoc"
-                noremap <leader>sd :exec "cd ".sd<RETURN>
-                let gocode = $HOME."/gitclones/code"
-                noremap <leader>gocode :exec "cd ".gocode
-                noremap <leader>cd :cd %:p:h<RETURN>
-
-                function! Golib()
-                        aboveleft split ~/gitclones/code/lib/pylib
-                endfunction
-        " }}}
 " }}}
-
-
-
 
 " Stuff I might one day find interesting {{{
         " hi User1 ctermfg=196 guifg=#eea040 guibg=#222222
@@ -464,18 +402,4 @@
         " hi User3 guifg=#ff66ff guibg=#222222
         " hi User4 ctermfg=239 guifg=#a0ee40 guibg=#222222
         " hi User5 guifg=#eeee40 guibg=#222222
-        "
-        " " Set 7 lines to the cursor - when moving vertically using j/k
-        " set scrolloff=7
 " }}}
-
-" Tips, not settings. {{{
-        " where was an option set
-        " :scriptnames : list all plugins, _vimrcs loaded (super)
-        " :verbose set history? : reveals value of history and where set
-        " :function : list functions
-        " :func SearchCompl : List particular function
-" }}}
-
-" Toys {
-        "echo '>^.^<'
