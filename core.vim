@@ -5,7 +5,8 @@
                 filetype off
                 " relotag vundling hausaufgaben ®
                         " set rtp+=~/.vim/bundle/vundle/
-                call vundle#begin()
+                "call vundle#begin()
+                call vundle#begin(path)  " Windows
         " }
 
         " vundle ménages vundle

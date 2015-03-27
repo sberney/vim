@@ -13,7 +13,8 @@ set nocompatible    " devient viMprovée
 " In the beginning the Universe was created. This has made a lot
 " of people very angry and been widely regarded as a bad move. {
 
-        let $SUPERHOME      = $HOME . '/.vim'
+        "let $SUPERHOME      = $HOME . '/.vim'
+        let $SUPERHOME      = $HOME . 'vimfiles'
 
         let g:tab_spacing   = 4
         set expandtab       " replace tab with spaces !!
@@ -21,7 +22,8 @@ set nocompatible    " devient viMprovée
 " }
 
 " Thusly pathed {
-        set rtp+=$SUPERHOME/bundle/vundle/      " vundling hausaufgaben
+        set rtp+=$SUPERHOME/bundle/Vundle.vim/  " vundling hausaufgaben
+        let path=$SUPERHOME . '\bundle'
 
         let g:ctrlp_default_input = 'gitc/'     " ctrlp search root !!
         let g:ctrlp_cache_dir = $SUPERHOME.'/.cache/ctrlp'
@@ -34,20 +36,38 @@ set nocompatible    " devient viMprovée
         " see $SUPERHOME/cddir.vim for more paths
 " }
 
+function! HasMac()
+    " Detect mac
+    if has('unix')
+        let s:uname = system('uname -s')
+        "if s:uname == 'Darwin\n'
+        if s:uname =~ 'darwin'
+            return 1
+        endif
+    endif
+
+    return 0
+endfunction
+
 " Sourcing vimscript & co {{{
         " Reload changes to .vimrc automatically
         augroup vimsourcer
                 autocmd!
-                "autocmd BufWritePost ~/_vimrc source ~/_vimrc
+                "autocmd BufWritePost ~/_vimrc source ~/_vimrc  TODO abstract namiing
                 autocmd BufWritePost $SUPERHOME/vimrc source $SUPERHOME/vimrc
                 autocmd BufWritePost $SUPERHOME/*.vim source $SUPERHOME/vimrc
         augroup END
 
         " Our birth is but a sleep and a forgetting. {
-                source $SUPERHOME/core.vim
-                source $SUPERHOME/statusline.vim
-                source $SUPERHOME/cddir.vim
-                source $SUPERHOME/python_vim_fxns.vim
+                source $SUPERHOME\core.vim
+                source $SUPERHOME\statusline.vim
+                source $SUPERHOME\cddir.vim
+                source $SUPERHOME\python_vim_fxns.vim
+
+                "source $SUPERHOME/core.vim
+                "source $SUPERHOME/statusline.vim
+                "source $SUPERHOME/cddir.vim
+                "source $SUPERHOME/python_vim_fxns.vim
         " }
 " }}}
 
