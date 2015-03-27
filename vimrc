@@ -64,6 +64,11 @@ filetype plugin indent on
                 " Hangs on period sometimes. Does this fix?
                 let g:pymode_rope_lookup_project = 0
                 let g:pymode_rope = 0
+
+            " Clojure {
+                Bundle 'kien/rainbow_parentheses.vim'
+
+            " Haskell
         " }}}
 
 
@@ -102,7 +107,8 @@ filetype plugin indent on
                 "set background=light
 
                 if has('gui_running')
-                        colorscheme molokai
+                        "colorscheme molokai
+                        colorscheme solarized
                 endif
 
                 " Solarized {
@@ -140,7 +146,7 @@ filetype plugin indent on
         set matchtime=2 " How many tenths of a second to blink when matching brackets
 
         if has('gui_running')
-                call ToggleFoldcolumn()  " show FC by default (leader fc toggles)
+                call toggleFoldcolumn()  " show FC by default (leader fc toggles)
         endif
 
         " wildmenu {{{
@@ -297,6 +303,11 @@ filetype plugin indent on
                 let g:ctrlp_default_input = 'gitc/'
                 let g:ctrlp_clear_cache_on_exit = 1 " ctrlp: cache across sessions
                 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
+                let g:ctrlp_max_files = 0
+                let g:ctrlp_custom_ignore = {
+                                        \'dir': '\.git$\|tmp$',
+                                        \'file': '\.dat$|\.DS_Store$'
+                                        \}
 
 
         " Starting from vim 7.3 undo can be persisted across sessions {
@@ -357,7 +368,7 @@ filetype plugin indent on
 
 
 " Key mapping {{{
-        let mapleader = ',' " alt: '\'
+        let mapleader = ',' " alt: '\\'
         let maplocalleader = '\\'
 
         " plugin hotkey config {
@@ -367,6 +378,8 @@ filetype plugin indent on
         " navigation {{{
                 " edit my vimrc {
                         nnoremap <leader>ev :split $MYVIMRC<CR>
+                " edit the header file for this cpp
+                        "nnoremap <leader>eh :split $MYVIMRC<CR>
 
                 " open previous buffer in new window {
                         nnoremap <leader>bp :execute "aboveleft split" bufname("#")<CR>
@@ -391,6 +404,12 @@ filetype plugin indent on
                 noremap <C-L> zl
                 noremap <C-H> zh
 
+        " Go to next integer {
+                nnoremap <leader>gi     /\d<CR>
+                nnoremap <leader>gI     ?\d<CR>b
+                "nnoremap <leader>g0i    0/\d<CR>
+                "nnoremap <leader>g$i    $?\d<CR>b
+
 
         " F4/F5: Run this file (&save) {{{
                 noremap <silent> <F5> <esc>:w<CR><esc>:!./%<CR>
@@ -403,7 +422,7 @@ filetype plugin indent on
                 noremap <leader>bt :call ToggleBool()<RETURN>
 
         " optional toggles {
-                function! ToggleFoldcolumn()
+                function! toggleFoldcolumn()
                         if or(!exists('&foldcolumn'), &foldcolumn)
                                 set foldcolumn=0
                         else
@@ -411,7 +430,7 @@ filetype plugin indent on
                         endif
                 endfunction
 
-                nnoremap <leader>fc :call ToggleFoldcolumn()<CR>
+                nnoremap <leader>fc :call toggleFoldcolumn()<CR>
                 nnoremap <leader>n :set relativenumber!<CR>
  
 
