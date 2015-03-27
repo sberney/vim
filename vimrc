@@ -14,14 +14,15 @@ filetype plugin indent on
 
 " Vundle {{{
         " Configuration {{{
-        set rtp+=~/.vim/bundle/vundle/
-        call vundle#rc()
+        set rtp+=~/vimfiles/bundle/Vundle.vim
+        let path='~/vimfiles/bundle' " Windows
+        call vundle#begin(path)
         " }}}
 
         " Vundle manages vundle {{{
-        Bundle 'gmarik/vundle'
+        Bundle 'gmarik/Vundle.vim'
 
-        " Plugin package management (Vundle) {
+        " Plugin package management (Vundle) {{{
             " Fly through vim with visual ease
             Bundle 'Lokaltog/vim-easymotion'
             " Lua syntax highlighting.
@@ -46,25 +47,41 @@ filetype plugin indent on
             " Allows commandline from vim??
             Bundle 'edkolev/promptline.vim'
 
-            " git {
+            " git {{{
                 " show column with +/-/etc for git diff
                 Plugin 'airblade/vim-gitgutter'
                 " vim fugitive (git int)
                 Plugin 'tpope/vim-fugitive'
+            " }}}
 
-            " ctags integration { 
+            " ctags integration {{{
                 " alternate tagbar: more features
                 Bundle 'majutsushi/tagbar'
                 " Taglist: display current function, etc. -> arrow
                 " this can be removed if tagbar is liked.
-                Bundle 'vim-scripts/taglist.vim'
+                "Bundle 'vim-scripts/taglist.vim'
+            " }}}
 
-            " Python ide {
+            " Python ide {{{
                 Bundle 'klen/python-mode'
                 " Hangs on period sometimes. Does this fix?
                 let g:pymode_rope_lookup_project = 0
                 let g:pymode_rope = 0
+            " }}}
+
+            " Clojure ide {{{
+                Bundle 'kien/rainbow_parentheses.vim'
+                Bundle 'tpope/vim-fireplace'
+                Bundle 'tpope/vim-leiningen'
+            " }}}
+
+            " C# ide {{{
+                Bundle 'tpope/vim-dispatch.git'
+                Bundle 'OrangeT/vim-csharp'
+                Bundle 'OmniSharp/omnisharp-vim'
+            " }}}
         " }}}
+    " }}}
 
 
         " Theme management (Vundle) {{{
@@ -72,6 +89,8 @@ filetype plugin indent on
             Bundle 'altercation/vim-colors-solarized'
             Bundle 'marcus/vim-mustang'
             Bundle 'jnurmine/Zenburn'
+
+        call vundle#end()
         " }}}
 " }}}
 
@@ -80,11 +99,11 @@ filetype plugin indent on
         " Reload changes to .vimrc automatically
         augroup vimsourcer
                 autocmd!
-                autocmd BufWritePost ~/.vim/vimrc source ~/.vim/vimrc
+                autocmd BufWritePost ~/_vimrc source ~/_vimrc
         augroup END
-        
+
         " Import custom extensions {
-                source ~/.vim/python_vim_fxns.vim
+                "source ~/vimfiles/python_vim_fxns.vim
 " }}}
 
 " Markers {{{
@@ -103,6 +122,11 @@ filetype plugin indent on
 
                 if has('gui_running')
                         colorscheme molokai
+
+                        "set background=dark
+                        "let g:zenburn_high_Contrast = 1 " For bright rooms.
+                        "unlet g:zenburn_high_Contrast  " For dark rooms.
+                        "colorscheme zenburn
                 endif
 
                 " Solarized {
@@ -140,7 +164,7 @@ filetype plugin indent on
         set matchtime=2 " How many tenths of a second to blink when matching brackets
 
         if has('gui_running')
-                call ToggleFoldcolumn()  " show FC by default (leader fc toggles)
+                "call ToggleFoldcolumn()  " show FC by default (leader fc toggles)
         endif
 
         " wildmenu {{{
@@ -165,7 +189,8 @@ filetype plugin indent on
                 " https://wincent.com/blog/making-vim-highlight-suspicious-characters
 
                 set list
-                set listchars=nbsp:¬,tab:»·,trail:·
+                "set listchars=nbsp:¬,tab:»·,trail:·
+                :set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
         " }}}
 
         " Fullscreen settings {{{
@@ -276,9 +301,10 @@ filetype plugin indent on
         set smarttab
         set expandtab
         set softtabstop=4
+        set shiftwidth=4
         set tabstop=8   " width of an actual \t
         "set backspace=indent,eol,start
-        set shiftround  " experimental, remove if annoying or unnoticed
+        "set shiftround  " experimental, remove if annoying or unnoticed
 
         set ttyfast     " if using vim in the normal way, this makes drawing faster
         set splitright  " otherwise vsplit opens up on the left side
@@ -293,6 +319,8 @@ filetype plugin indent on
         set wrap
         set textwidth=0
 
+        autocmd FileType clj setlocal iskeyword-=/,. "Don't skip slashes or periods when determining word lengths
+
         " ctrlp {
                 let g:ctrlp_default_input = 'gitc/'
                 let g:ctrlp_clear_cache_on_exit = 1 " ctrlp: cache across sessions
@@ -304,7 +332,7 @@ filetype plugin indent on
                 " what_are_some_simple_yet_mindblowing_tweaks_to/c2onmqe
 
                 if has("persistent_undo")
-                    set undodir=$HOME/.vim/undodir
+                    set undodir=$HOME/vimfiles/undodir
                     set undofile
                 endif
 
@@ -318,6 +346,10 @@ filetype plugin indent on
                         " Remember info about open buffers on close
                         set viminfo^=%
                 augroup END
+
+        " Clojure editing
+                au VimEnter * RainbowParenthesesToggle
+                au Syntax * RainbowParenthesesLoadRound
 
 
         " Promptline {{{
@@ -333,21 +365,21 @@ filetype plugin indent on
                 " to disable powerline symbols
                 let g:promptline_powerline_symbols = 0
 
-                let g:airline_left_sep = '▶'
-                let g:airline_right_sep = '◀'
+                let g:airline_left_sep = '>'
+                let g:airline_right_sep = '<'
 
                 if has('gui_running')
                         "let g:airline_symbols.linenr = '␊'
-                        let g:airline_symbols.linenr = '␤'
-                        "let g:airline_symbols.linenr = '¶'
+                        "let g:airline_symbols.linenr = '␤'
+                        ""let g:airline_symbols.linenr = '¶'
 
-                        let g:airline_symbols.branch = '⎇'
+                        "let g:airline_symbols.branch = '⎇'
 
-                        "let g:airline_symbols.paste = 'ρ'
-                        let g:airline_symbols.paste = 'Þ'
-                        "let g:airline_symbols.paste = '∥'
+                        ""let g:airline_symbols.paste = 'ρ'
+                        "let g:airline_symbols.paste = 'Þ'
+                        ""let g:airline_symbols.paste = '∥'
 
-                        let g:airline_symbols.whitespace = 'Ξ'
+                        "let g:airline_symbols.whitespace = 'Ξ'
                 endif
 
                 "let g:promptline_preset = 'full'
@@ -372,12 +404,12 @@ filetype plugin indent on
                         nnoremap <leader>bp :execute "aboveleft split" bufname("#")<CR>
 
                 " use command-[ command-] to navigate (instead of command-{}) {{{
-                        nnoremap <D-[> :tabprev<CR>
-                        inoremap <D-[> :tabprev<CR>
-                        vnoremap <D-[> :tabprev<CR>
-                        nnoremap <D-]> :tabnext<CR>
-                        inoremap <D-]> :tabnext<CR>
-                        vnoremap <D-]> :tabnext<CR>
+                        nnoremap <A-[> :tabprev<CR>
+                        inoremap <A-[> :tabprev<CR>
+                        vnoremap <A-[> :tabprev<CR>
+                        nnoremap <A-]> :tabnext<CR>
+                        inoremap <A-]> :tabnext<CR>
+                        vnoremap <A-]> :tabnext<CR>
                 " }}}
         " }}}
 
@@ -451,7 +483,7 @@ filetype plugin indent on
         " Directory shortcuts {{{
                 let sd = $HOME."/gitclones/syncdoc"
                 noremap <leader>sd :exec "cd ".sd<RETURN>
-                let gocode = $HOME."/gitclones/code"
+                let gocode = $HOME."/gitclones/zdw2/IndexSyncer/jsyncer"
                 noremap <leader>gocode :exec "cd ".gocode
                 noremap <leader>cd :cd %:p:h<RETURN>
 
@@ -461,7 +493,130 @@ filetype plugin indent on
         " }}}
 " }}}
 
+" C# Configuration {{{
+        " OmniSharp won't work without this setting
+        filetype plugin on
 
+        "This is the default value, setting it isn't actually necessary
+        let g:OmniSharp_host = "http://localhost:2000"
+
+        "Set the type lookup function to use the preview window instead of the status line
+        "let g:OmniSharp_typeLookupInPreview = 1
+
+        "Timeout in seconds to wait for a response from the server
+        let g:OmniSharp_timeout = 1
+
+        "Showmatch significantly slows down omnicomplete
+        "when the first match contains parentheses.
+        set noshowmatch
+
+        "Super tab settings - uncomment the next 4 lines
+        "let g:SuperTabDefaultCompletionType = 'context'
+        "let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
+        "let g:SuperTabDefaultCompletionTypeDiscovery = ["&omnifunc:<c-x><c-o>","&completefunc:<c-x><c-n>"]
+        "let g:SuperTabClosePreviewOnPopupClose = 1
+
+        "don't autoselect first item in omnicomplete, show if only one item (for preview)
+        "remove preview if you don't want to see any documentation whatsoever.
+        set completeopt=longest,menuone,preview
+        " Fetch full documentation during omnicomplete requests.
+        " There is a performance penalty with this (especially on Mono)
+        " By default, only Type/Method signatures are fetched. Full documentation can still be fetched when
+        " you need it with the :OmniSharpDocumentation command.
+        " let g:omnicomplete_fetch_documentation=1
+
+        "Move the preview window (code documentation) to the bottom of the screen, so it doesn't move the code!
+        "You might also want to look at the echodoc plugin
+        set splitbelow
+
+        " Get Code Issues and syntax errors
+        let g:syntastic_cs_checkers = ['syntax', 'semantic', 'issues']
+
+        augroup omnisharp_commands
+            autocmd!
+
+            "Set autocomplete function to OmniSharp (if not using YouCompleteMe completion plugin)
+            autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
+
+            " Synchronous build (blocks Vim)
+            "autocmd FileType cs nnoremap <F5> :wa!<cr>:OmniSharpBuild<cr>
+            " Builds can also run asynchronously with vim-dispatch installed
+            autocmd FileType cs nnoremap <leader>b :wa!<cr>:OmniSharpBuildAsync<cr>
+            " automatic syntax check on events (TextChanged requires Vim 7.4)
+            autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
+
+            " Automatically add new cs files to the nearest project on save
+            autocmd BufWritePost *.cs call OmniSharp#AddToProject()
+
+            "show type information automatically when the cursor stops moving
+            autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
+
+            "The following commands are contextual, based on the current cursor position.
+
+            autocmd FileType cs nnoremap gd :OmniSharpGotoDefinition<cr>
+            autocmd FileType cs nnoremap <leader>fi :OmniSharpFindImplementations<cr>
+            autocmd FileType cs nnoremap <leader>ft :OmniSharpFindType<cr>
+            autocmd FileType cs nnoremap <leader>fs :OmniSharpFindSymbol<cr>
+            autocmd FileType cs nnoremap <leader>fu :OmniSharpFindUsages<cr>
+            "finds members in the current buffer
+            autocmd FileType cs nnoremap <leader>fm :OmniSharpFindMembers<cr>
+            " cursor can be anywhere on the line containing an issue
+            autocmd FileType cs nnoremap <leader>x  :OmniSharpFixIssue<cr>
+            autocmd FileType cs nnoremap <leader>fx :OmniSharpFixUsings<cr>
+            autocmd FileType cs nnoremap <leader>tt :OmniSharpTypeLookup<cr>
+            autocmd FileType cs nnoremap <leader>dc :OmniSharpDocumentation<cr>
+            "navigate up by method/property/field
+            autocmd FileType cs nnoremap <C-K> :OmniSharpNavigateUp<cr>
+            "navigate down by method/property/field
+            autocmd FileType cs nnoremap <C-J> :OmniSharpNavigateDown<cr>
+
+        augroup END
+
+
+        " this setting controls how long to wait (in ms) before fetching type / symbol information.
+        set updatetime=500
+        " Remove 'Press Enter to continue' message when type information is longer than one line.
+        set cmdheight=2
+
+        " Contextual code actions (requires CtrlP)
+        nnoremap <leader><space> :OmniSharpGetCodeActions<cr>
+        " Run code actions with text selected in visual mode to extract method
+        vnoremap <leader><space> :call OmniSharp#GetCodeActions('visual')<cr>
+
+        " rename with dialog
+        nnoremap <leader>nm :OmniSharpRename<cr>
+        nnoremap <F2> :OmniSharpRename<cr>
+        " rename without dialog - with cursor on the symbol to rename... ':Rename newname'
+        command! -nargs=1 Rename :call OmniSharp#RenameTo("<args>")
+
+        " Force OmniSharp to reload the solution. Useful when switching branches etc.
+        nnoremap <leader>rl :OmniSharpReloadSolution<cr>
+        nnoremap <leader>cf :OmniSharpCodeFormat<cr>
+        " Load the current .cs file to the nearest project
+        nnoremap <leader>tp :OmniSharpAddToProject<cr>
+
+        " (Experimental - uses vim-dispatch or vimproc plugin) - Start the omnisharp server for the current solution
+        nnoremap <leader>ss :OmniSharpStartServer<cr>
+        nnoremap <leader>sp :OmniSharpStopServer<cr>
+
+        " Add syntax highlighting for types and interfaces
+        nnoremap <leader>th :OmniSharpHighlightTypes<cr>
+        "Don't ask to save when changing buffers (i.e. when jumping to a type definition)
+        set hidden
+
+
+        au BufRead,BufNewFile *.cs set filetype=csharp
+        au BufRead,BufNewFile *.cs setfiletype=csharp
+
+        au FileType cs set omnifunc=syntaxcomplete#Complete
+        "au FileType cs set foldmethod=marker
+        "au FileType cs set foldmarker={,}
+        "au FileType cs set foldtext=substitute(getline(v:foldstart),'{.*','{...}',)
+        "au FileType csharp setlocal foldlevelstart=1
+        au FileType csharp setlocal foldmethod=indent
+        au FileType csharp setlocal foldlevel=0
+
+" }}}
 
 
 " Stuff I might one day find interesting {{{
@@ -484,4 +639,4 @@ filetype plugin indent on
 " }}}
 
 " Toys {
-        echo '>^.^<'
+        "echo '>^.^<'
