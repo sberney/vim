@@ -146,7 +146,7 @@ filetype plugin indent on
         set matchtime=2 " How many tenths of a second to blink when matching brackets
 
         if has('gui_running')
-                call toggleFoldcolumn()  " show FC by default (leader fc toggles)
+                call ToggleFoldcolumn()  " show FC by default (leader fc toggles)
         endif
 
         " wildmenu {{{
@@ -407,8 +407,8 @@ filetype plugin indent on
         " Go to next integer {
                 nnoremap <leader>gi     /\d<CR>
                 nnoremap <leader>gI     ?\d<CR>b
-                "nnoremap <leader>g0i    0/\d<CR>
-                "nnoremap <leader>g$i    $?\d<CR>b
+                nnoremap <leader>g0i    0/\d<CR>
+                nnoremap <leader>g$i    $?\d<CR>b
 
 
         " F4/F5: Run this file (&save) {{{
@@ -422,7 +422,7 @@ filetype plugin indent on
                 noremap <leader>bt :call ToggleBool()<RETURN>
 
         " optional toggles {
-                function! toggleFoldcolumn()
+                function! ToggleFoldcolumn()
                         if or(!exists('&foldcolumn'), &foldcolumn)
                                 set foldcolumn=0
                         else
@@ -430,7 +430,7 @@ filetype plugin indent on
                         endif
                 endfunction
 
-                nnoremap <leader>fc :call toggleFoldcolumn()<CR>
+                nnoremap <leader>fc :call ToggleFoldcolumn()<CR>
                 nnoremap <leader>n :set relativenumber!<CR>
  
 
@@ -503,4 +503,4 @@ filetype plugin indent on
 " }}}
 
 " Toys {
-        echo '>^.^<'
+        "echo '>^.^<'
