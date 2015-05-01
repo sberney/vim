@@ -5,8 +5,11 @@
                 filetype off
                 " relotag vundling hausaufgaben ®
                         " set rtp+=~/.vim/bundle/vundle/
-                "call vundle#begin()
-                call vundle#begin(path)  " Windows
+                if has('win32')
+                    call vundle#begin(path)  " Windows
+                else
+                    call vundle#begin()
+                endif
         " }
 
         " vundle ménages vundle
@@ -88,6 +91,8 @@
 
 
                         " Haskell {
+                                Bundle 'raichoo/haskell-vim.git'
+                                Bundle 'lukerandall/haskellmode-vim'
                         " }
 
                         " javascript {
@@ -304,6 +309,11 @@
                         "set expandtab
                 set shiftround  " Round indent to multiple of 'shiftwidth'
                 set smarttab    " <BS> deletes a whole tab, not a character. tab indents shiftwidth not [soft]tabstop.
+
+                "augroup tabber
+                "        autocmd!
+                "        autocmd tabstop = 8
+                "        autocmd 
         " }}}
 
         set backspace=indent,eol,start  " allows (full) backspacing: over
@@ -344,8 +354,8 @@
 
 
 " Key mapping {{{
-        let mapleader = ',' " alt: '\\'
-        let maplocalleader = '\\'
+        "let mapleader = ',' " alt: '\\'
+        "let maplocalleader = '\\'
 
         " plugin hotkey config {
                 let g:ctrlp_map = '<c-p>'
@@ -391,6 +401,16 @@
         " Go to next integer
                 nnoremap <leader>gi     /\d<CR>
                 nnoremap <leader>gI     ?\d<CR>b
+
+        " Moving horizontally across windows
+                nnoremap <C-w>ghj <C-w>h<C-w>j
+                nnoremap <C-w>gjh <C-w>j<C-w>h
+                nnoremap <C-w>ghk <C-w>h<C-w>k
+                nnoremap <C-w>gkh <C-w>k<C-w>h
+                nnoremap <C-w>gjl <C-w>j<C-w>l
+                nnoremap <C-w>glj <C-w>l<C-w>j
+                nnoremap <C-w>gkl <C-w>k<C-w>l
+                nnoremap <C-w>glk <C-w>l<C-w>k
 
 
         " F4/F5: Run this file (&save) {{{
