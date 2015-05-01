@@ -60,8 +60,10 @@ endfunction
 
         " Our birth is but a sleep and a forgetting. {
                 source $SUPERHOME\core.vim
+                source $SUPERHOME\syntaxis.vim
                 source $SUPERHOME\statusline.vim
                 source $SUPERHOME\cddir.vim
+                source $SUPERHOME\http.vim
                 source $SUPERHOME\python_vim_fxns.vim
 
                 "source $SUPERHOME/core.vim
