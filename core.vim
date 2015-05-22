@@ -173,6 +173,10 @@
                 elseif !has('gui_running')
                         Zenburn
                 endif
+
+                if has('gui_running') && has('win32')
+                        set guifont=Consolas:h11:cANSI
+                endif
         " }}}
 
         " Colorization (hilightion, syntaxis) {{{
