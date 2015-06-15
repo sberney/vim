@@ -13,8 +13,8 @@ set nocompatible    " devient viMprovée
 " In the beginning the Universe was created. This has made a lot
 " of people very angry and been widely regarded as a bad move. {
 
-        let $SUPERHOME      = $HOME . '/.vim'
-        "let $SUPERHOME      = $HOME . 'vimfiles'
+        "let $SUPERHOME      = $HOME . '/.vim'
+        let $SUPERHOME      = $HOME . 'vimfiles'
 
         let g:tab_spacing   = 2
         set expandtab       " replace tab with spaces !!
@@ -23,12 +23,13 @@ set nocompatible    " devient viMprovée
 
 " Thusly pathed {
         set rtp+=$SUPERHOME/bundle/Vundle.vim/  " vundling hausaufgaben
+		let path=$SUPERHOME . '\bundle'
         "let path=$SUPERHOME . '/bundle'
 
         let g:ctrlp_default_input = 'gitc/'     " ctrlp search root !!
         let g:ctrlp_cache_dir = $SUPERHOME.'/.cache/ctrlp'
 
-        let g:tagbar_ctags_bin = $HOME . '/local/bin/ctags'
+        "let g:tagbar_ctags_bin = $HOME . '/local/bin/ctags'
 
         if has("persistent_undo") " persistent undo since 7.3
                 set undodir=$SUPERHOME/undodir
@@ -66,10 +67,12 @@ endfunction
         augroup END
 
         " Our birth is but a sleep and a forgetting. {
-                source $SUPERHOME/core.vim
-                source $SUPERHOME/statusline.vim
-                source $SUPERHOME/cddir.vim
-                source $SUPERHOME/python_vim_fxns.vim
+                source $SUPERHOME\core.vim
+                source $SUPERHOME\syntaxis.vim
+                source $SUPERHOME\statusline.vim
+                source $SUPERHOME\cddir.vim
+                source $SUPERHOME\http.vim
+                source $SUPERHOME\python_vim_fxns.vim
 
         " }
 " }}}

@@ -4,6 +4,29 @@
         autocmd FileType clj setlocal iskeyword-=/,. "Don't skip slashes or periods when determining word lengths
 " }}}
 
+" javascript ide {
+
+    " pangloss
+    let g:javascript_enable_domhtmlcss=1
+    let b:javascript_fold=1
+    let g:javascript_ignore_javaScriptdoc=0
+
+    " conceal/reduce javascript characters {
+        let g:javascript_conceal_function   = "ƒ"
+        let g:javascript_conceal_null       = "ø"
+        "let g:javascript_conceal_this       = "@"
+        let g:javascript_conceal_return     = "?"
+        let g:javascript_conceal_undefined  = "¿"
+        "let g:javascript_conceal_NaN        = "N"
+        "let g:javascript_conceal_prototype  = "¶"
+        "let g:javascript_conceal_static     = "•"
+        "let g:javascript_conceal_super      = "O"
+    " }
+
+    " vim-indent-guides
+    "(toggle with <Leader>ig )
+" }
+
 " C# Configuration {{{ TODO integrate syntaxis more thoroughly. & Make this modal.
         " OmniSharp won't work without this setting
         filetype plugin on

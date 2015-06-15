@@ -94,6 +94,16 @@
                                 Bundle 'raichoo/haskell-vim.git'
                                 Bundle 'lukerandall/haskellmode-vim'
                         " }
+
+                        " javascript {
+                                " improves syntax recognition => highlighting
+                                Bundle 'jelera/vim-javascript-syntax'
+                                " enables html/css highlighting in js, code folding, and reduces function => ƒ
+                                Bundle 'pangloss/vim-javascript'
+                                " uses color blocks to visualize js indents.
+                                " toggle with <leader>ig
+                                Bundle 'nathanaelkane/vim-indent-guides.git'
+                        " }
                 " }}}
         " }}}
 
@@ -103,6 +113,8 @@
             Bundle 'altercation/vim-colors-solarized'
             Bundle 'marcus/vim-mustang'
             Bundle 'jnurmine/Zenburn'
+            " a javascript optimized colorscheme
+            Bundle 'goatslacker/mango.vim'
         " }}}
 
         " vundle requires these things {
@@ -160,6 +172,10 @@
 
                 elseif !has('gui_running')
                         Zenburn
+                endif
+
+                if has('gui_running') && has('win32')
+                        set guifont=Consolas:h11:cANSI
                 endif
         " }}}
 
@@ -334,6 +350,11 @@
                         " Remember info about open buffers on close
                         set viminfo^=%
                 augroup END
+
+        " maybe this should be broken into a windows.vim compatibility file.
+        if has('win32')
+            set grepprg=grep\ -nH   " windows defaults to findstr
+        endif
 " }}}
 
 
