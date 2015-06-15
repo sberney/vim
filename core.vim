@@ -240,6 +240,7 @@
         " }}}
 
         " smart search {{{
+                set noignorecase
                 set incsearch
 
                 set magic       " search regexiness.
