@@ -34,7 +34,7 @@ set nocompatible    " devient viMprovée
         let g:ctrlp_default_input = 'gitc/'     " ctrlp search root !!
         let g:ctrlp_cache_dir = $SUPERHOME.'/.cache/ctrlp'
 
-        "let g:tagbar_ctags_bin = $HOME . '/local/bin/ctags'
+        let g:tagbar_ctags_bin = $HOME . '/local/bin/ctags'
 
         if has("persistent_undo") " persistent undo since 7.3
                 set undodir=$SUPERHOME/undodir
