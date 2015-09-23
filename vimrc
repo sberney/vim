@@ -13,8 +13,12 @@ set nocompatible    " devient viMprovée
 " In the beginning the Universe was created. This has made a lot
 " of people very angry and been widely regarded as a bad move. {
 
+        " machine specific {
+                let $HOME = 'A:\hearth'
+        " }
+
         if has('win32')
-                let $SUPERHOME      = $HOME . 'vimfiles'
+                let $SUPERHOME      = $HOME . '\vim'
         else
                 let $SUPERHOME      = $HOME . '/.vim/'
         endif
