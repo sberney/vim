@@ -22,8 +22,6 @@ set nocompatible    " devient viMprovée
         else
                 let $SUPERHOME      = $HOME . '/.vim/'
         endif
-        "let $SUPERHOME      = $HOME . '/.vim'
-        "let $SUPERHOME      = $HOME . 'vimfiles'
 
         let g:tab_spacing   = 2
         set expandtab       " replace tab with spaces !!
@@ -57,7 +55,6 @@ function! HasMac()
     " Detect mac
     if has('unix')
         let s:uname = system('uname -s')
-        "if s:uname == 'Darwin\n'
         if s:uname =~ 'darwin'
             return 1
         endif
