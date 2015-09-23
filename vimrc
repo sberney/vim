@@ -29,7 +29,7 @@ set nocompatible    " devient viMprovée
 " }
 
 " Thusly pathed {
-        set rtp+=$SUPERHOME/bundle/Vundle.vim/  " vundling hausaufgaben
+        set rtp+=$SUPERHOME/bundle/Vundle.vim  " vundling hausaufgaben
         "let path=$SUPERHOME . '\bundle'
         let path=$SUPERHOME . '/bundle'
 
