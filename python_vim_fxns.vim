@@ -1,6 +1,6 @@
 " check for python support
 if !has('python')
-        echo 'Error: Requires vim compiled with +python'
+        "echom "Error: Requires vim compiled with +python"  " causes hang on start
         finish
 endif
 
