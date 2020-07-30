@@ -13,13 +13,15 @@ set nocompatible    " devient viMprovée
 " In the beginning the Universe was created. This has made a lot
 " of people very angry and been widely regarded as a bad move. {
 
+        " machine specific {
+                let $HOME = 'A:\hearth'
+        " }
+
         if has('win32')
-                let $SUPERHOME      = $HOME . 'vimfiles'
+                let $SUPERHOME      = $HOME . '\vim'
         else
                 let $SUPERHOME      = $HOME . '/.vim/'
         endif
-        "let $SUPERHOME      = $HOME . '/.vim'
-        "let $SUPERHOME      = $HOME . 'vimfiles'
 
         let g:tab_spacing   = 2
         set expandtab       " replace tab with spaces !!
@@ -27,7 +29,7 @@ set nocompatible    " devient viMprovée
 " }
 
 " Thusly pathed {
-        set rtp+=$SUPERHOME/bundle/Vundle.vim/  " vundling hausaufgaben
+        set rtp+=$SUPERHOME/bundle/Vundle.vim  " vundling hausaufgaben
         "let path=$SUPERHOME . '\bundle'
         let path=$SUPERHOME . '/bundle'
 
@@ -53,7 +55,6 @@ function! HasMac()
     " Detect mac
     if has('unix')
         let s:uname = system('uname -s')
-        "if s:uname == 'Darwin\n'
         if s:uname =~ 'darwin'
             return 1
         endif

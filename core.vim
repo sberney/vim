@@ -5,51 +5,47 @@
                 filetype off
                 " relotag vundling hausaufgaben ®
                         " set rtp+=~/.vim/bundle/vundle/
-                if has('win32')
-                    call vundle#begin(path)  " Windows
-                else
-                    call vundle#begin()
-                endif
+                 call vundle#begin()
         " }
 
         " vundle ménages vundle
-                Bundle 'gmarik/vundle'
+                Plugin 'VundleVim/Vundle.vim'
 
         " Plugins' package management (Vundle) {{{
 
                 " Fly through vim with visual ease TODO: build out configuration
-                Bundle 'Lokaltog/vim-easymotion'
+                Plugin 'Lokaltog/vim-easymotion'
 
                 " Open files below node with fuzzy search
-                Bundle 'kien/ctrlp.vim'
+                Plugin 'kien/ctrlp.vim'
 
                 " DistRAction-free writing env: :Goyo [width]
-                Bundle 'junegunn/goyo.vim'
+                Plugin 'junegunn/goyo.vim'
 
                 " easy to define substitution rules via subversion and coercion TODO: build out or abandon
-                        "Bundle 'tpope/vim-abolish'
+                        "Plugin 'tpope/vim-abolish'
 
                 " statusline {
                         " awesome statusline!
                         Plugin 'bling/vim-airline'
                         " exports prompt to shell
-                        Bundle 'edkolev/promptline.vim'
+                        Plugin 'edkolev/promptline.vim'
                             " Move buffers to command bar... ?Display the buffer number along with the buffer name TODO: verify
-                                    "Bundle 'bling/vim-bufferline'
+                                    "Plugin 'bling/vim-bufferline'
                 " }
 
                 " side windows {
                         " File explorer
-                        Bundle 'scrooloose/nerdtree'
+                        Plugin 'scrooloose/nerdtree'
 
                         " Graphical undo tree explorer
-                        Bundle 'sjl/gundo.vim'
+                        Plugin 'sjl/gundo.vim'
 
                         " ctags integration {
                                 " everyone needs to see their functions in a jumpus list
-                                Bundle 'majutsushi/tagbar'
+                                Plugin 'majutsushi/tagbar'
                                 " superceded this legacy jumpusius maximinus.
-                                        "Bundle 'vim-scripts/taglist.vim'
+                                        "Plugin 'vim-scripts/taglist.vim'
                         " }
                 " }
 
@@ -63,58 +59,58 @@
                 " syntaxis & IDEntment {{{
                 "
                         " Syntax checker (on close) for many languages TODO: explore
-                        Bundle 'scrooloose/syntastic'
+                        Plugin 'scrooloose/syntastic'
 
                         " lua { syntax highlighting.
-                                Bundle 'xolox/vim-misc'
-                                Bundle 'xolox/vim-lua-inspect'
+                                Plugin 'xolox/vim-misc'
+                                Plugin 'xolox/vim-lua-inspect'
                         " }
 
                         " Python ide {
-                                Bundle 'klen/python-mode'
+                                Plugin 'klen/python-mode'
                                         " Hangs on period sometimes. Does this fix?
                                                 let g:pymode_rope_lookup_project = 0
                                                 let g:pymode_rope = 0
                         " }
 
                         " Clojure {
-                                Bundle 'kien/rainbow_parentheses.vim'
-                                Bundle 'tpope/vim-fireplace'
-                                Bundle 'tpope/vim-leiningen'
+                                Plugin 'kien/rainbow_parentheses.vim'
+                                Plugin 'tpope/vim-fireplace'
+                                Plugin 'tpope/vim-leiningen'
 
                         " }
                         " C# ide {{{
-                                Bundle 'tpope/vim-dispatch.git'
-                                Bundle 'OrangeT/vim-csharp'
-                                Bundle 'OmniSharp/omnisharp-vim'
+                                Plugin 'tpope/vim-dispatch.git'
+                                Plugin 'OrangeT/vim-csharp'
+                                "Plugin 'OmniSharp/omnisharp-vim'
                         " }}}
 
 
                         " Haskell {
-                                Bundle 'raichoo/haskell-vim.git'
-                                Bundle 'lukerandall/haskellmode-vim'
+                                Plugin 'raichoo/haskell-vim.git'
+                                Plugin 'lukerandall/haskellmode-vim'
                         " }
 
                         " javascript {
                                 " improves syntax recognition => highlighting
-                                Bundle 'jelera/vim-javascript-syntax'
+                                Plugin 'jelera/vim-javascript-syntax'
                                 " enables html/css highlighting in js, code folding, and reduces function => �
-                                Bundle 'pangloss/vim-javascript'
+                                Plugin 'pangloss/vim-javascript'
                                 " uses color blocks to visualize js indents.
                                 " toggle with <leader>ig
-                                Bundle 'nathanaelkane/vim-indent-guides.git'
+                                Plugin 'nathanaelkane/vim-indent-guides.git'
                         " }
                 " }}}
         " }}}
 
 
         " Theme management (Vundle) {{{
-            Bundle 'tomasr/molokai'
-            Bundle 'altercation/vim-colors-solarized'
-            Bundle 'marcus/vim-mustang'
-            Bundle 'jnurmine/Zenburn'
+            Plugin 'tomasr/molokai'
+            Plugin 'altercation/vim-colors-solarized'
+            Plugin 'marcus/vim-mustang'
+            Plugin 'jnurmine/Zenburn'
             " a javascript optimized colorscheme
-            Bundle 'goatslacker/mango.vim'
+            Plugin 'goatslacker/mango.vim'
         " }}}
 
         " vundle requires these things {
