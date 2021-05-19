@@ -32,6 +32,8 @@
                         Plugin 'vim-airline/vim-airline-themes'
                         " exports prompt to shell
                         Plugin 'edkolev/promptline.vim'
+                        " exports prompt to tmux
+                        Plugin 'edkolev/tmuxline.vim'
                             " Move buffers to command bar... ?Display the buffer number along with the buffer name TODO: verify
                                     "Plugin 'bling/vim-bufferline'
                 " }
