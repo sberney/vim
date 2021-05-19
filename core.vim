@@ -4,8 +4,8 @@
                         " set nocompatible
                 filetype off
                 " relotag vundling hausaufgaben ®
-                        " set rtp+=~/.vim/bundle/vundle/
-                 call vundle#begin()
+		 set rtp+=~/.vim/bundle/Vundle.vim
+                 call vundle#begin('~/.vim/bundle')
         " }
 
         " vundle ménages vundle
@@ -28,6 +28,8 @@
                 " statusline {
                         " awesome statusline!
                         Plugin 'bling/vim-airline'
+                        " change the theme of the airline
+                        Plugin 'vim-airline/vim-airline-themes'
                         " exports prompt to shell
                         Plugin 'edkolev/promptline.vim'
                             " Move buffers to command bar... ?Display the buffer number along with the buffer name TODO: verify

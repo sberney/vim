@@ -122,6 +122,9 @@
                 "let g:promptline_preset = 'full'
                 "let g:promptline_theme = 'jelly'
         " }}}
+
+        " Change the theme of the statusline
+        let g:airline_theme='zenburn'
 " }}}
 
 
