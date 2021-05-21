@@ -194,6 +194,11 @@
                         " uncreate custom highlighting, like 80 char redding
                         nnoremap mn :match None<CR>
 
+                        " create a persistent highlighted line
+                        highlight ThatLine ctermbg=yellow ctermfg=black guibg=#efef8f guifg=#242424
+                        nnoremap <silent> <Leader>l ml:execute 'match ThatLine /\%'.line('.').'l/'<CR>
+
+
                         set showmatch   " highlights matching brackets when selected
                         set matchtime=2 " How many tenths of a second to blink when matching brackets
                 " }}}
