@@ -4,8 +4,8 @@
                         " set nocompatible
                 filetype off
                 " relotag vundling hausaufgaben ®
-                        " set rtp+=~/.vim/bundle/vundle/
-                 call vundle#begin()
+		 set rtp+=~/.vim/bundle/Vundle.vim
+                 call vundle#begin('~/.vim/bundle')
         " }
 
         " vundle ménages vundle
@@ -28,8 +28,12 @@
                 " statusline {
                         " awesome statusline!
                         Plugin 'bling/vim-airline'
+                        " change the theme of the airline
+                        Plugin 'vim-airline/vim-airline-themes'
                         " exports prompt to shell
                         Plugin 'edkolev/promptline.vim'
+                        " exports prompt to tmux
+                        Plugin 'edkolev/tmuxline.vim'
                             " Move buffers to command bar... ?Display the buffer number along with the buffer name TODO: verify
                                     "Plugin 'bling/vim-bufferline'
                 " }
@@ -189,6 +193,11 @@
 
                         " uncreate custom highlighting, like 80 char redding
                         nnoremap mn :match None<CR>
+
+                        " create a persistent highlighted line
+                        highlight ThatLine ctermbg=yellow ctermfg=black guibg=#efef8f guifg=#242424
+                        nnoremap <silent> <Leader>l ml:execute 'match ThatLine /\%'.line('.').'l/'<CR>
+
 
                         set showmatch   " highlights matching brackets when selected
                         set matchtime=2 " How many tenths of a second to blink when matching brackets
