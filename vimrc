@@ -14,7 +14,7 @@ set nocompatible    " devient viMprovée
 " of people very angry and been widely regarded as a bad move. {
 
         " machine specific {
-                let $HOME = '/home/sam'
+                let $HOME = fnamemodify('~', ':p')
         " }
 
         if has('win32')
