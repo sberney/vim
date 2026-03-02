@@ -12,11 +12,11 @@
     let g:javascript_ignore_javaScriptdoc=0
 
     " conceal/reduce javascript characters {
-        let g:javascript_conceal_function   = "ƒ"
-        let g:javascript_conceal_null       = "ø"
+        let g:javascript_conceal_function   = "Æ’"
+        let g:javascript_conceal_null       = "Ã¸"
         "let g:javascript_conceal_this       = "@"
         let g:javascript_conceal_return     = "?"
-        let g:javascript_conceal_undefined  = "¿"
+        let g:javascript_conceal_undefined  = "Â¿"
         "let g:javascript_conceal_NaN        = "N"
         "let g:javascript_conceal_prototype  = "¶"
         "let g:javascript_conceal_static     = "•"
